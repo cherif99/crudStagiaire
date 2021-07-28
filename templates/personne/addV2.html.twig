@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PersonneController!{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+<h1>Formulaire</h1>
+{# on appelle la methode form() de twig #}
+{# novalidate=remplace requere en html #}
+    {# {{form(formulaire)}} #}
+     {# {{form_errors(formulaire)}} #}
+    {# <form> #}
+     {{form_start(formulaire,{'attr': {'novalidate':'novalidate'}})}}
+     {# {{form_start(formulaire.adresse,{'attr': {'novalidate':'novalidate'}})}} #}
+       {# {{form_errors(formulaire.adresse)}}#}
+      {{form_errors(formulaire)}} 
+  <div class="form-group">
+    {# <label for="exampleInputEmail1">Email address</label> #}
+     {{form_label(formulaire.nom, "Nom:")}}
+        {# {{form_errors(formulaire.nom)}} #}
+
+    {# <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"> #}
+    {{form_widget(formulaire.nom, {'attr':{'class':'form-control', 'aria-describedby':'emailHelp' ,'placeholder':'Votre nom'}})}}
+
+    {# <small id="emailHelp" class="form-text text-muted">entrer votre nom</small> #}
+  </div>
+   <div class="form-group">
+   {{form_label(formulaire.prenom, "Prenom:")}}
+    {# {{form_errors(formulaire.prenom)}}  #}
+    {{form_widget(formulaire.prenom, {'attr':{'class':'form-control', 'aria-describedby':'emailHelp' ,'placeholder':'votre prenom'}})}} 
+  </div>
+  {# rue #}
+  <div class="form-group">
+   {{form_label(formulaire.adresse.rue, "Rue:")}}
+    {# {{form_errors(formulaire.prenom)}}  #}
+    {{form_widget(formulaire.adresse.rue, {'attr':{'class':'form-control', 'aria-describedby':'emailHelp' ,'placeholder':'votre rue'}})}} 
+  </div>
+  {# codepostale #}
+  <div class="form-group">
+   {{form_label(formulaire.adresse.codePostal, "CodePostal :")}}
+    {# {{form_errors(formulaire.prenom)}}  #}
+    {{form_widget(formulaire.adresse.codePostal, {'attr':{'class':'form-control', 'aria-describedby':'emailHelp' ,'placeholder':'votre codePostal'}})}} 
+  </div>
+
+  {# ville #}
+   <div class="form-group">
+   {{form_label(formulaire.adresse.ville, "Ville :")}}
+    {# {{form_errors(formulaire.prenom)}}  #}
+    {{form_widget(formulaire.adresse.ville, {'attr':{'class':'form-control', 'aria-describedby':'emailHelp' ,'placeholder':'votre ville'}})}} 
+  </div>
+  {# jout de sport #}
+  {# <ul class="sports" 
+ data-prototype="{{ form_widget(formulaire.sports.vars.prototype)|e('html_attr') }}">
+</ul> #}
+{# rue #}
+  <div class="form-group">
+  {{form_widget(formulaire.sports)}}
+   
+  </div>
+  {# codepostale #}
+  
+  
+ {# //boutton #} 
+   {# {{form_widget(formulaire.save, {'attr':{'class':'btn btn-primary'}})}} #}
+   {# afficher l'adresse #}
+   {# {{form_widget(formulaire.adresse)}} #}
+   {{form_rest(formulaire)}}
+    {{form_end(formulaire)}}
+{# {# </form>  #}
+</div>
+  <script src="{{asset('js/script.js')}}"></script>
+{% endblock %}

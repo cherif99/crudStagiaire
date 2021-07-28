@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des personnes
+{% endblock %}
+
+{% block body %}
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nom</th>
+				<th>Prénom</th>
+				<th>Nom Complet</th>
+				<th>Adresse</th>
+				<th>Sports</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for p in personnes %}
+				<tr>
+					<td>{{p.id}}</td>
+					<td>{{p.nom}}</td>
+					<td>{{p.prenom}}</td>
+					<td>{{p.nomComplet}}</td>
+					<td>
+						{% if p.adresse is not null %}
+							{{p.adresse.rue ~ " " ~ p.adresse.codePostal ~ "-" ~ p.adresse.ville}}
+						{% else %}
+							-
+						{% endif %}
+					</td>
+					<td>
+						<ul>
+							{% for sport in p.sports %}
+								<li>{{sport.nom}}</li>
+							{% endfor %}
+						</ul>
+					</td>
+					<td>
+				<button data-href="{{ path('personne_delete', {'id': p.id })}}" class="btn btn-danger deleteBtn"> Supprimer</button>
+				<a href="/panier/add" class="btn btn-warning">Ajouter au panier</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+      <script src="{{asset('js/script.js')}}"></script>
+{% endblock %}
+
